@@ -1,17 +1,41 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-
 const PORT = process.env.PORT || 3000;
 
-app.get("/", (req,res)=>{
-    res.send("Hola mundo!")
+
+app.get('/',(req,res)=>{
+    res.send("Landing page - Grupo #")
 })
 
-app.post("/welcome", (req,res)=>{
-    const {username} = req.body;
-    res.status(200).send(`Hola, ${username}`)
+app.get('/integrantes',(req,res)=>{
+    res.json([
+        {
+            "nombre":"Marlon",
+            "apellido":"Lalangui",
+            "edad":34
+        },
+        {
+            "nombre":"Juan",
+            "apellido":"Álvear",
+            "edad":38
+        },
+        {
+            "nombre":"Ximena",
+            "apellido":"Salazar",
+            "edad":33
+        }
+    ])
 })
 
-app.listen(PORT,()=>{
-    console.log("Server OK")
+app.get('/products',(req,res)=>{
+    res.send(`
+            <h1>Catálogo de productos</h1>
+                <p>Bienvenidos</p>
+    `)
 })
+
+
+
+app.listen(PORT, () => {
+    console.log(`server started on port ${PORT}`);
+});
